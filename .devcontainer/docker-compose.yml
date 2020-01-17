@@ -1,0 +1,28 @@
+version: "3.7"
+services:
+  app:
+    build: .
+    command: sleep infinity
+    volumes:
+      - ..:/original:cached
+      - app:/app
+      - ../.devcontainer:/app/.devcontainer:cached
+      - home:/home/app
+      - ~/.gitconfig:/home/app/.gitconfig:ro
+      - ~/.zshrc:/home/app/.zshrc:ro
+      - ~/.netrc:/home/app/.netrc:ro
+  datomic-transactor:
+    build:
+      context: ../datomic
+    environment:
+      ADMIN_PASSWORD: admin
+      DATOMIC_PASSWORD: datomic
+      ALT_HOST: datomic-transactor
+      DATOMIC_DB: app
+  datomic-peer-server:
+    build:
+      context: ../datomic
+    entrypoint: bin/run -m datomic.peer-server -h datomic-peer-server -p 8998 -a myaccesskey,mysecret -d app,datomic:dev://datomic-transactor:4334/app
+volumes:
+  app:
+  home:

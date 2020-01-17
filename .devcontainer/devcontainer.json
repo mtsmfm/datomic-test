@@ -1,0 +1,10 @@
+{
+  "dockerComposeFile": [
+    "./docker-compose.yml",
+    "./docker-compose.local.yml"
+  ],
+  "service": "app",
+  "workspaceFolder": "/app",
+  "postCreateCommand": "cp -Tr /original /app",
+  "shutdownAction": "stopCompose"
+}
