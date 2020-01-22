@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  app:
+    build:
+      args: &args
+        DATOMIC_HTTP_USER: foo@example.com
+        DATOMIC_HTTP_PASSWORD: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  datomic-transactor:
+    build:
+      args:
+        <<: *args
+    environment:
+      LICENSE_KEY: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  datomic-peer-server:
+    build:
+      args:
+        <<: *args
