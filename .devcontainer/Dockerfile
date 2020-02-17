@@ -3,7 +3,7 @@ FROM clojure
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 RUN apt-get update \
-  && apt-get install -y zsh less autossh git
+  && apt-get install -y zsh less autossh git curl procps net-tools
 
 RUN useradd --create-home --user-group --uid 1000 app
 RUN mkdir -p /app /original
